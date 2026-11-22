@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy & Terms</title>
+<style>
+  body { font-family: -apple-system, sans-serif; max-width: 680px; margin: 0 auto; padding: 24px; line-height: 1.6; color: #1a1a1a; }
+  h1 { font-size: 1.6em; border-bottom: 1px solid #ddd; padding-bottom: 8px; }
+  h2 { font-size: 1.15em; margin-top: 28px; }
+  .app-name { color: #007aff; font-weight: bold; }
+  .meta { color: #888; font-size: 0.9em; }
+  nav { margin: 16px 0; }
+  nav a { margin-right: 16px; color: #007aff; text-decoration: none; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #1a1a1a; color: #eee; }
+    h1 { border-color: #444; }
+    .meta { color: #aaa; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="?page=privacy" id="nav-privacy">Privacy Policy</a>
+  <a href="?page=terms" id="nav-terms">Terms of Use</a>
+</nav>
+
+<div id="content"></div>
+
+<script>
+// 通用模板：所有 App 共用，只通过 URL 区分
+// 用法：?app=YIYE&page=privacy
+const params = new URLSearchParams(location.search);
+const appName = params.get("app") || "this app";
+const page = params.get("page") || "privacy";
+
+document.title = appName + " — " + (page === "terms" ? "Terms of Use" : "Privacy Policy");
+document.getElementById("nav-" + page).style.fontWeight = "bold";
+
+const A = `<span class="app-name">${appName}</span>`;
+
+const privacy = `
+<h1>Privacy Policy — ${A}</h1>
+<p class="meta">Last updated: November 2026</p>
+
+<h2>1. The short version</h2>
+<p>${A} works entirely on your device. Your photos and content are never uploaded, never sent to any server, and never seen by us. We technically cannot access them.</p>
+
+<h2>2. What the app stores</h2>
+<ul>
+  <li>User-created content (titles, choices, settings) is saved only on your device (local storage).</li>
+  <li>References to photos in your own library stay on your device. The app never copies or transmits the photos themselves.</li>
+</ul>
+
+<h2>3. What the app does NOT do</h2>
+<ul>
+  <li>No account or sign-in required.</li>
+  <li>No analytics or tracking SDKs.</li>
+  <li>No advertising.</li>
+  <li>No upload of user content of any kind.</li>
+</ul>
+
+<h2>4. Purchases</h2>
+<p>Optional upgrades are handled entirely by Apple through the App Store. We never see your payment details. Purchases support Family Sharing where applicable.</p>
+
+<h2>5. Children</h2>
+<p>The app does not collect any data from any user, including children.</p>
+
+<h2>6. Changes</h2>
+<p>If this policy changes, the new version will appear here with an updated date.</p>
+
+<p>Contact: <a href="mailto:malantou-tech@qq.com">malantou-tech@qq.com</a></p>
+`;
+
+const terms = `
+<h1>Terms of Use — ${A}</h1>
+<p class="meta">Last updated: November 2026</p>
+
+<h2>1. The app</h2>
+<p>${A} is provided "as is" without warranties of any kind.</p>
+
+<h2>2. Your content</h2>
+<p>You keep all rights to your content. The app claims no ownership and stores nothing outside your device.</p>
+
+<h2>3. Purchases</h2>
+<p>Paid upgrades are one-time purchases processed by Apple (not subscriptions). They can be restored anytime on any device with your Apple ID.</p>
+
+<h2>4. Acceptable use</h2>
+<p>Only use content you have the right to use. You are responsible for the content you include.</p>
+
+<h2>5. Liability</h2>
+<p>The app is not liable for data loss (keep your own backups) or for how exported content is used.</p>
+
+<p>Contact: <a href="mailto:malantou-tech@qq.com">malantou-tech@qq.com</a></p>
+`;
+
+document.getElementById("content").innerHTML =
+  page === "terms" ? terms : privacy;
+</script>
+
+</body>
+</html>
